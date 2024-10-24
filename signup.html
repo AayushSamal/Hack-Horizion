@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Saheli Care</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fdf2f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .logo {
+            color: #831843;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .welcome-text {
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #831843;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #fbcfe8;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #be185d;
+        }
+
+        .password-requirements {
+            font-size: 0.85em;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .signup-button {
+            background-color: #be185d;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .signup-button:hover {
+            background-color: #9d174d;
+        }
+
+        .terms {
+            font-size: 0.9em;
+            color: #64748b;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .terms a {
+            color: #be185d;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .login-link {
+            text-align: center;
+            color: #64748b;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #be185d;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            height: 5px;
+            background-color: #f3f4f6;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .strength-meter {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .signup-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1 class="logo">Saheli Care</h1>
+        <p class="welcome-text">Start your wellness journey today</p>
+        
+        <form id="signup-form" action="dashboard.html" method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Date of Birth</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="password-strength">
+                        <div class="strength-meter" id="strength-meter"></div>
+                    </div>
+                    <p class="password-requirements">
+                        Must be at least 8 characters long with numbers and special characters
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+            </div>
+
+            <div class="terms">
+                By signing up, you agree to our 
+                <a href="#">Terms of Service</a> and 
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <button type="submit" class="signup-button">Create Account</button>
+        </form>
+
+        <p class="login-link">
+            Already have an account? <a href="index.html">Log in</a>
+        </p>
+    </div>
+
+    <script>
+        // Password strength meter
+        const password = document.getElementById('password');
+        const strengthMeter = document.getElementById('strength-meter');
+
+        password.addEventListener('input', function() {
+            const val = password.value;
+            let strength = 0;
+            
+            if (val.length >= 8) strength += 25;
+            if (val.match(/[0-9]/)) strength += 25;
+            if (val.match(/[a-zA-Z]/)) strength += 25;
+            if (val.match(/[^0-9a-zA-Z]/)) strength += 25;
+
+            strengthMeter.style.width = strength + '%';
+            
+            if (strength < 50) {
+                strengthMeter.style.backgroundColor = '#ef4444';
+            } else if (strength < 75) {
+                strengthMeter.style.backgroundColor = '#f59e0b';
+            } else {
+                strengthMeter.style.backgroundColor = '#22c55e';
+            }
+        });
+
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally handle the signup logic
+            // For demonstration, we'll just redirect to the dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        // Password confirmation validation
+        const confirmPassword = document.getElementById('confirm-password');
+        confirmPassword.addEventListener('input', function() {
+            if (confirmPassword.value !== password.value) {
+                confirmPassword.setCustomValidity("Passwords don't match");
+            } else {
+                confirmPassword.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+</html>
